@@ -1,11 +1,13 @@
 from flask import Flask, send_file
 from dotenv import load_dotenv
 import os
+from pyngrok import ngrok
+
+url = ngrok.connect(5000)
+print("Ngrok URL:", url)
 
 app = Flask(__name__)
 load_dotenv()
-
-print(os.getenv('EP1')) 
 
 @app.route('/')
 def index():
