@@ -2,9 +2,16 @@ from flask import Flask, send_file
 from dotenv import load_dotenv
 import os
 from pyngrok import ngrok
+import pyshorteners
 
 url = ngrok.connect(5000)
 print("Ngrok URL:", url)
+
+url_convertida = url.public_url
+
+encurtador = pyshorteners.Shortener()
+url_encurtada = encurtador.tinyurl.short(str(url_convertida))
+print("URL encurtado:", url_encurtada)
 
 app = Flask(__name__)
 load_dotenv()
